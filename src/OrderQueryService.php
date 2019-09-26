@@ -8,14 +8,11 @@ namespace cyr\face;
 
 class OrderQueryService extends PaybaseService
 {
-    public $request_url = PAY_XF_SEARCH;
-    public $transac_code = TRANSAC_XF_QUERY_RES;
+    public $request_url = FACE_SEARCH;
 
-    public function query($orderNo)
+    public function query()
     {
-        return $this->request([
-            'orderNo' => $orderNo,
-        ]);
+        return $this->request();
     }
 
 }
