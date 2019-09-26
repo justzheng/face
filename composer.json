@@ -1,0 +1,21 @@
+{
+    "name": "cyr/face",
+    "description": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zhengtaoyu",
+            "email": "717828758@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "cyr\\junhuan\\": "src/"
+        },
+        "files": [
+            "src/face.php"
+        ]
+    }
+}

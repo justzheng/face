@@ -1,0 +1,43 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: cyr
+ * Date: 2019/8/26
+ * Time: 14:56
+ */
+
+namespace cyr\face;
+
+
+class SearchService extends PaybaseService
+{
+    public $request_url = PAY_XF_SEARCH;
+    public $transac_code = TRANSAC_XF_QUERY;
+
+    public $lsh;
+    public $jszhm;
+    public $hphm;
+    public $fdjh;
+    public $hpzl;
+
+    public function getQuery(){
+        if($this->lsh && $this->jszhm && $this->hphm && $this->fdjh && $this->hpzl ){
+            $data= [
+                'lsh' => $this->lsh,
+                'jszhm' => $this->jszhm,
+                'hphm' => $this->hphm,
+                'fdjh' => $this->fdjh,
+                'hpzl' => $this->hpzl,
+            ];
+            $resp = $this->request($data,true,false);
+            //用公钥对接口signature验签
+            if($resp){
+                $res = RsaHelper::decsign($resp->respData,$this->private_key_path);
+                return $res;
+            }
+            return false;
+        }else{
+            return false;
+        }
+    }
+}
