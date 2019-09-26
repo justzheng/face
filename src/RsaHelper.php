@@ -215,4 +215,13 @@ class RsaHelper
             return "-----BEGIN PRIVATE KEY-----\n" . $content . "\n-----END PRIVATE KEY-----\n";
         }
     }
+
+    /**
+     * 对称加密
+     */
+    public static function encryprFace($data){
+        $key = "l4mdofLTvHkyONpdlyXBiaTv";
+        $vector = "12345678";
+        return openssl_encrypt($data,"AES-128-CBC",$key,OPENSSL_RAW_DATA,$vector);
+    }
 }
