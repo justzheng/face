@@ -10,11 +10,13 @@ use yii\httpclient\CurlTransport;
 class PaybaseService extends Object
 {
     public $request_url;
+    public $privateUrl;
 
     public function request($data, $doconvert = true, $doverify = true)
     {
         $request_data =[
-            'condition' => RsaHelper::encryprFace($this->sign()),
+            //私钥签名加密数据
+            'condition' => RsaHelper::sign(RsaHelper::encryprFace($this->sign()),$this->privateUrl),
             'userCode' => 1,
             'signature' => 1,
             'vector' => 1,
@@ -71,5 +73,4 @@ class PaybaseService extends Object
         ];
         return json_encode($data);
     }
-
 }

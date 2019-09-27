@@ -4,6 +4,16 @@ namespace cyr\face;
 
 class RsaHelper
 {
+    //加密秘钥，
+    private $_key;
+    private $_iv;
+
+    public function __construct($key, $iv)
+    {
+        $this->_key = $key;
+        $this->_iv = $iv;
+    }
+
     /**
      * @param $data
      * @param $rsakeypath
@@ -214,14 +224,5 @@ class RsaHelper
         } else {
             return "-----BEGIN PRIVATE KEY-----\n" . $content . "\n-----END PRIVATE KEY-----\n";
         }
-    }
-
-    /**
-     * 对称加密
-     */
-    public static function encryprFace($data){
-        $key = "l4mdofLTvHkyONpdlyXBiaTv";
-        $vector = "12345678";
-        return openssl_encrypt($data,"AES-128-CBC",$key,OPENSSL_RAW_DATA,$vector);
     }
 }
